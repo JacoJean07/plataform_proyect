@@ -4,9 +4,9 @@ require "../sql/database.php";
 //llamar a la funcion sesion para identificar las sesiones
 session_start();
 //si la sesion no existe, mandar al login.php y dejar de ejecutar el resto; se puede hacer un required para ahorra codigo
-if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || $_SESSION["user"]["user_role"] == 2)) {
+if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1)) {
   //llamar los contactos de la base de datos y especificar que sean los que tengan el student_id de la funcion sesion_start
-  $students = $conn->query("SELECT data.* FROM data JOIN users ON data.user_id = users.id WHERE users.user_role = 3;");} else {
+  $teachers = $conn->query("SELECT data.* FROM data JOIN users ON data.user_id = users.id WHERE users.user_role = 2;");} else {
   header("Location: ../index.php");
   return;
 }
@@ -28,10 +28,10 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
         <div class="card  p-4">
           <div class="table-responsive">
             <!-- si el array asociativo $teachers no tiene nada dentro, entonces imprimir el siguiente div -->
-            <?php if ($students->rowCount() == 0): ?>
+            <?php if ($teachers->rowCount() == 0): ?>
               <div class= "col-md-4 mx-auto mb-3">
                 <div class= "card card-body text-center">
-                  <p>No hay estudiantes con datos por el momento</p>
+                  <p>No hay Profesores con datos por el momento</p>
                   <a href="users.php">Mira los usuarios</a>
                 </div>
               </div>
@@ -51,32 +51,32 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
                 </tr>
               </thead>
               <tbody>
-              <?php foreach ($students as $student): ?>
+              <?php foreach ($teachers as $teacher): ?>
                 <tr>
-                  <th scope="row"><?= $student["id"]?></th>
-                  <td><?= $student["data_lastname"]?></td>
-                  <td><?= $student["data_name"]?></td>
+                  <th scope="row"><?= $teacher["id"]?></th>
+                  <td><?= $teacher["data_lastname"]?></td>
+                  <td><?= $teacher["data_name"]?></td>
                   <td>
-                    <?php if ($student["data_career"] == 1) : ?>
+                    <?php if ($teacher["data_career"] == 1) : ?>
                     <p>Desarrollo de Software</p>
-                    <?php elseif ($student["data_career"] == 2) : ?>
+                    <?php elseif ($teacher["data_career"] == 2) : ?>
                     <p>Administración de Empresas</p>
-                    <?php elseif ($student["data_career"] == 3) : ?>
+                    <?php elseif ($teacher["data_career"] == 3) : ?>
                     <p>Diseño Gráfico</p>
                     <?php endif ?>  
                   </td>
                   <td>
                     <?php
                       // Calcular la edad a partir de la fecha de nacimiento
-                      $birthdate = new DateTime($student["data_birthdate"]);
+                      $birthdate = new DateTime($teacher["data_birthdate"]);
                       $today = new DateTime();
                       $age = $today->diff($birthdate)->y;
                       echo $age;
                     ?>
                   </td>
-                  <td><?= $student["data_dni"]?></td>
-                  <td><?= $student["data_phone"]?></td>
-                  <td><?= $student["data_address"]?></td>
+                  <td><?= $teacher["data_dni"]?></td>
+                  <td><?= $teacher["data_phone"]?></td>
+                  <td><?= $teacher["data_address"]?></td>
                   <td>ver perfil</td>
                 </tr>
               <?php endforeach ?>

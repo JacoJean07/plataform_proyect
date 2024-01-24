@@ -5,7 +5,7 @@ require "../sql/database.php";
 session_start();
 //si la sesion no existe, mandar al login.php y dejar de ejecutar el resto; se puede hacer un required para ahorra codigo
 if (!isset($_SESSION["user"])) {
-  header("Location: ../index.html");
+  header("Location: ../index.php");
   return;
 }
 

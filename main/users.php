@@ -31,6 +31,21 @@ if ($_SESSION["user"]["user_role"] == 1 || $_SESSION["user"]["user_role"] == 2) 
       <div class="col-md-12">
         <div class="card  p-4">
           <div class="table-responsive">
+            <!-- si el array asociativo $teachers no tiene nada dentro, entonces imprimir el siguiente div -->
+            <?php if ($users->rowCount() == 0): ?>
+              <div class= "col-md-4 mx-auto">
+                <div class= "card card-body text-center">
+                  <p>No hay usuarios por el momento</p>
+                  <a href="usersAdd.php">Agrega uno!</a>
+                </div>
+              </div>
+            <?php endif ?>
+
+            <div class="m-3 row ">
+              <div class="">
+                <button type="submit" class="btn btn-success"><a class="link-light" href="usersAdd.php">Nuevo Usuario</a></button>
+              </div>
+            </div>
             <table class="table table-striped table-bordered" id="tbl">
               <thead>
                 <tr>

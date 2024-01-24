@@ -21,7 +21,7 @@ CREATE TABLE data (
     data_phone CHARACTER(15),
     data_address VARCHAR(255),
     data_career INT,
-    data_rm BOOLEAN
+    data_rm BOOLEAN,
     Foreign Key (user_id) REFERENCES users(id)
 );
 
@@ -40,20 +40,20 @@ CREATE TABLE cv (
     cv_skills VARCHAR(255),
     cv_portfolio VARCHAR(255),
     cv_status BOOLEAN,
-    cv_rm BOOLEAN
+    cv_rm BOOLEAN,
     Foreign Key (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE skills (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    skill_name VARCHAR(255)
+    skill_name VARCHAR(255),
     Foreign Key (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE proyects (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL
+    user_id INT NOT NULL,
     proyect_name VARCHAR(255),
     proyect_category VARCHAR(255),
     proyect_description VARCHAR(255),

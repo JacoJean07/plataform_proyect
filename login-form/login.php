@@ -19,13 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $statement->execute();
     //COMPROBAMOS QUE EL ID EXISTA, EN CASO DE QUE EL USUARIO NO SEA UN NAVEGADOR, Y SI NO EXISTE EL ID MANDAMOS UN ERROR
     if ($statement->rowCount() == 0) {
-      $error = "Invalid email";
+      $error = "Invalid credentials";
     } else {
       //obtenemos los datos de usuario y asignamos a una variable user y lo pedimos en fetch assoc para que lo mande en un formato asociativo
       $user = $statement->fetch(PDO::FETCH_ASSOC);
       //comparamos si la contrasenia ingresada en el form es igual a la contrasenia que obtuvimos en la variable user
       if (!password_verify($_POST["password"], $user["user_password"])) {
-        $error = "Invalid password";
+        $error = "Invalid credentials";
       } else {
         //borramos por asi decir la contrasenia del usuario en la secion para que no almacene ese valor y por seguridad
         unset($user["user_password"]);
