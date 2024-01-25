@@ -28,6 +28,14 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
 
 <section style="background-color: #eee;">
   <div class="container py-5">
+  <?php if ($skills->rowCount() == 0):  ?>
+    <div class= "mt-3 mx-auto">
+      <div class= "card card-body text-center">
+        <p>Agrega tus Datos Personales :D</p>
+        <a href="data.php?id=<?= $_SESSION["user"]["id"] ?>">PRESS HERE!</a>
+      </div>
+    </div>
+  <?php else : ?>
 
     <div class="row">
       <div class="col-lg-4">
@@ -261,6 +269,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
         <?php endif ?>
       </div>
     </div>
+  <?php endif ?>
   </div>
 </section>
 

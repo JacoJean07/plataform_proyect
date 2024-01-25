@@ -80,7 +80,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
       }
 
       // Redirige al home.php
-      header("Location: home.php");
+      header("Location: profile.php");
     }
   }
 } else {
@@ -107,6 +107,9 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
               <?= $error ?>
             </p>
           <?php endif ?>
+
+          <?php if (!empty($data)) : ?>
+
           <form action="data.php?id=<?= $_SESSION["user"]["id"] ?>" method="post">
 
             <div class="input-group mb-3">
@@ -149,6 +152,53 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
             <button type="submit" class="btn btn-block btn-secondary">Registrar</button>
 
           </form>
+
+          <?php else : ?>
+
+          <form action="data.php?id=<?= $_SESSION["user"]["id"] ?>" method="post">
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Nombres</span>
+            <input type="text" id="name" class="form-control" placeholder="" name="name">
+            <span class="input-group-text">Apellidos</span>
+            <input type="text" id="lastname" class="form-control" placeholder="" name="lastname">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Fecha de Nacimiento</span>
+            <input type="date" id="date" class="form-control" placeholder="" aria-label="Recipient's username" name="date">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Cédula</span>
+            <input type="text" id="dni" class="form-control" name="dni">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Celular</span>
+            <input type="text" id="phone" class="form-control" name="phone">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Direccion</span>
+            <inpu type="text" id="address" class="form-control" name="address">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Carrera</span>
+            <select  id="carrer" class="form-select" aria-label="Default select example" name="career">
+              <option value="1">Desarrollo de Software</option>
+              <option value="2">Administración de Empresas</option>
+              <option value="3">Diseño Gráfico</option>
+            </select>
+          </div>
+
+          <!-- Botón de envío del formulario -->
+          <button type="submit" class="btn btn-block btn-secondary">Registrar</button>
+
+          </form>
+
+          <?php endif ?>
         </div>
       </div>
     </div>
