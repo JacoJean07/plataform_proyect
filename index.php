@@ -298,13 +298,13 @@
           <div class="col-md-3">
             <div class="profile">
               <div class="pic"><img src="assets/img/client-1.jpg" alt=""></div>
-              <h4>Saul Goodman</h4>
-              <span>Lawless Inc</span>
+              <h4>Un señor Calvo</h4>
+              <span>Empresa Emprendedora</span>
             </div>
           </div>
           <div class="col-md-9">
             <div class="quote">
-              <b><img src="assets/img/quote_sign_left.png" alt=""></b> Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper. <small><img src="assets/img/quote_sign_right.png" alt=""></small>
+              <b><img src="assets/img/quote_sign_left.png" alt=""></b> Lo mejor que han visto mis ojos (soy ciego) <small><img src="assets/img/quote_sign_right.png" alt=""></small>
             </div>
           </div>
         </div>
@@ -312,14 +312,14 @@
         <div class="row">
           <div class="col-md-9">
             <div class="quote">
-              <b><img src="assets/img/quote_sign_left.png" alt=""></b> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto beatae. <small><img src="assets/img/quote_sign_right.png" alt=""></small>
+              <b><img src="assets/img/quote_sign_left.png" alt=""></b> LECOMENDADISIMO <small><img src="assets/img/quote_sign_right.png" alt=""></small>
             </div>
           </div>
           <div class="col-md-3">
             <div class="profile">
               <div class="pic"><img src="assets/img/client-2.jpg" alt=""></div>
-              <h4>Sara Wilsson</h4>
-              <span>Odeo Inc</span>
+              <h4>Una China</h4>
+              <span>Come murcielagos</span>
             </div>
           </div>
         </div>

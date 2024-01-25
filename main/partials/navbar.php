@@ -1,3 +1,10 @@
+<?php
+
+$dataUser = $conn->query("SELECT data.* FROM data WHERE user_id = {$_SESSION["user"]["id"]} LIMIT 1");
+  $data = $dataUser->fetch(PDO::FETCH_ASSOC);
+
+?>
+
 
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, 0.8);">
@@ -50,7 +57,7 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.php">Perfil</a>
+                    <a class="nav-link" href="profile.php?=<?= $_SESSION["user"]["id"] ?>">Perfil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="groupList.php">Explorar Perfiles</a>
@@ -63,7 +70,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" ><?= $_SESSION["user"]["user_email"] ?></a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="data.php?id=<?= $_SESSION["user"]["id"] ?>">Ajustes de cuenta</a></li>
+                        <li><a class="dropdown-item" href="data.php?id=<?= $data["id"] ?>">Ajustes de cuenta</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="nav-item">
                             <!-- llamamos al logout.php -->

@@ -1055,3 +1055,8 @@ section {
   font-size: 13px;
   color: #ccc;
 }
+
+
+.custom-textarea {
+  height: 100px; 
+}

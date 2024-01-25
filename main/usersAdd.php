@@ -59,7 +59,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1))  
 <div class="container pt-4">
   <div class="card shadow-lg">
   <div class="card-header bg-secondary text-white">
-    Nuevo usuario tipo Profesor
+    Nuevo usuario 
   </div>
     <div class="row">
       <div class="col-md-12">
