@@ -57,6 +57,7 @@ CREATE TABLE proyects (
     proyect_name VARCHAR(255),
     proyect_category VARCHAR(255),
     proyect_description VARCHAR(255),
-    proyect_date DATE
-    -- proyect_photo 
+    proyect_date DATE,
+    proyect_image VARCHAR(255),
+    Foreign Key (user_id) REFERENCES users(id)
 );

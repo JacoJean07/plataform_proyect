@@ -11,6 +11,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
   $dataCv = $conn->query("SELECT cv.* FROM cv WHERE user_id = {$_SESSION["user"]["id"]} LIMIT 1");
   $cv = $dataCv->fetch(PDO::FETCH_ASSOC);
   $skills = $conn->query("SELECT skills.* FROM skills WHERE user_id = {$_SESSION["user"]["id"]}");
+  $proyects = $conn->query("SELECT proyects.* FROM proyects WHERE user_id = {$_SESSION["user"]["id"]}");
 
 
 } else {
@@ -28,7 +29,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
 
 <section style="background-color: #eee;">
   <div class="container py-5">
-  <?php if ($skills->rowCount() == 0):  ?>
+  <?php if ($dataUser->rowCount() == 0):  ?>
     <div class= "mt-3 mx-auto">
       <div class= "card card-body text-center">
         <p>Agrega tus Datos Personales :D</p>
@@ -54,6 +55,24 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
               <?php endif ?> 
             </p>
             <p class="text-muted mb-4"><?= $user["data_address"]?></p>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><?= $_SESSION["user"]["user_email"]?></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Telefono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><?= $user["data_phone"]?></p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -149,51 +168,6 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
       </div>
       
       <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Apellidos</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $user["data_lastname"]?></p>
-              </div>
-              <div class="col-sm-3">
-                <p class="mb-0">Nombres</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $user["data_name"]?></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Telefono</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $user["data_phone"]?></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $user["data_address"]?></p>
-              </div>
-            </div>
-          </div>
-        </div>
         <?php if ($dataCv->rowCount() == 0):  ?>
           <div class= "col-md-4 mx-auto">
             <div class= "card card-body text-center">
@@ -216,8 +190,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
                 <p class="mb-4"><span class="text-primary font-italic me-1">Sobre mi Profesión</span></p>
                 <p><?= $cv["cv_profesionAbout"]?></p>
 
-                <p class="mb-4"><span class="text-primary font-italic me-1">Portafolio</span></p>
-                <p><?= $cv["cv_portfolio"]?></p>
+                
 
                 <div class="m-3 row ">
                   <div class="">
@@ -230,38 +203,48 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
           </div>
         </div>
 
-        <div class="row">
+        <div class="container">
           
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
+          <div class="row">
+            <div class="card mb-4 ">
               <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+                <p class="mb-4"><span class="text-primary font-italic me-1">Portafolio</span></p>
+                <p><?= $cv["cv_portfolio"]?></p>
+
+                <?php if ($proyects->rowCount() == 0):  ?>
+                  <div class= "mt-3 mx-auto">
+                    <div class= "card card-body text-center">
+                      <p>Agrega tus proyectos :D</p>
+                      <a href="proyectsAdd.php?id=<?= $_SESSION["user"]["id"] ?>">PRESS HERE!</a>
+                    </div>
+                  </div>
+                <?php else : ?>
+                
+                  <div class="row">
+                  <?php foreach ($proyects as $proyect): ?>
+                    <div class="col-md-6 mb-3">
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-header d-flex">
+                          <h5 class="me-auto"> <?= $proyect["proyect_name"]?> </h5>
+                          <p class="card-text"> <?= $proyect["proyect_date"]?></p>
+                        </div>
+                        <div class="card-body">
+                          <h6 class="card-subtitle mb-2 text-body-secondary"> <?= $proyect["proyect_category"]?> </h6>
+                          <p class="card-text"> <?= $proyect["proyect_description"]?></p>
+                          <!-- Agregar la imagen -->
+                          <img src="<?= $proyect["proyect_image"] ?>" class="card-img-top rounded" alt="Proyecto Image">
+                        </div>
+                      </div>
+                    </div>
+                  <?php endforeach ?>
+                  </div>
+
+                  <div class="m-3 row ">
+                    <div class="">
+                      <a class="link-light btn btn-success" href="proyectsAdd.php?id=<?= $_SESSION["user"]["id"] ?>">Agregar mas Proyectos</a>
+                    </div>
+                  </div>
+                <?php endif ?>
               </div>
             </div>
           </div>

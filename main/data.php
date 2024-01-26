@@ -181,7 +181,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
 
           <div class="input-group mb-3">
             <span class="input-group-text">Direccion</span>
-            <inpu type="text" id="address" class="form-control" name="address">
+            <input type="text" id="address" class="form-control" name="address">
           </div>
 
           <div class="input-group mb-3">

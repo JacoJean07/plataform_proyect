@@ -27,7 +27,8 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
   // }
 
   // Asignamos la tarea a una variable y usamos el metodo fetch para que se pueda leer en formato de array asociativo
-  $data = $statement->fetch(PDO::FETCH_ASSOC);
+  $dataCv = $statement->fetch(PDO::FETCH_ASSOC);
+  
 
   // Identifica el método que usa el server, en este caso si el método es POST procesa el if
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -101,6 +102,7 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
 <?php require ("partials/header.php"); ?>
 
 <div class="container pt-4">
+<?php if (empty($dataCv)):  ?>
   <div class="card shadow-lg">
     <div class="card-header bg-secondary text-white">
       Mi CV
@@ -118,54 +120,54 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
 
             <div class="input-group mb-3">
               <span class="input-group-text">Presentación Corta</span>
-              <textarea type="text" id="presentation" class="form-control custom-textarea" placeholder="Soy juan :D tengo 20 años :D" name="presentation"><?= $data["cv_presentation"] ?></textarea>
+              <textarea type="text" id="presentation" class="form-control custom-textarea" placeholder="Soy juan :D tengo 20 años :D" name="presentation"></textarea>
             </div>
 
             <div class="input-group mb-3 ">
               <span class="input-group-text span_cv px-5">Biografía</span>
-              <textarea type="text" id="about" class="form-control custom-textarea" placeholder="Biografía" name="about"><?= $data["cv_about"] ?></textarea>
+              <textarea type="text" id="about" class="form-control custom-textarea" placeholder="Biografía" name="about"></textarea>
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Sobre mi Profesión</span>
-              <textarea type="text" id="profesionAbout" class="form-control custom-textarea" placeholder="Me dedico a..." name="profesionAbout"><?= $data["cv_profesionAbout"] ?></textarea>
+              <textarea type="text" id="profesionAbout" class="form-control custom-textarea" placeholder="Me dedico a..." name="profesionAbout"></textarea>
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Sobre tu Portafolio</span>
-              <textarea type="text" id="portfolio" class="form-control custom-textarea" placeholder="Me dedico a..." name="portfolio"><?= $data["cv_portfolio"] ?></textarea>
+              <textarea type="text" id="portfolio" class="form-control custom-textarea" placeholder="Me dedico a..." name="portfolio"></textarea>
             </div>
 
             <h3 class="" align="center">TUS REDES SOCIALES :D</h3>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Twitter</span>
-              <input value="<?= $data["cv_twitter"] ?>" type="text" id="twitter" class="form-control" name="twitter">
+              <input type="text" id="twitter" class="form-control" name="twitter">
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Facebook</span>
-              <input value="<?= $data["cv_facebook"] ?>" type="text" id="facebook" class="form-control" name="facebook">
+              <input type="text" id="facebook" class="form-control" name="facebook">
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Youtube</span>
-              <input value="<?= $data["cv_youtube"] ?>" type="text" id="youtube" class="form-control" name="youtube">
+              <input type="text" id="youtube" class="form-control" name="youtube">
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Github</span>
-              <input value="<?= $data["cv_github"] ?>" type="text" id="github" class="form-control" name="github">
+              <input type="text" id="github" class="form-control" name="github">
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Linkedin</span>
-              <input value="<?= $data["cv_linkedin"] ?>" type="text" id="linkedin" class="form-control" name="linkedin">
+              <input type="text" id="linkedin" class="form-control" name="linkedin">
             </div>
 
             <div class="input-group mb-3">
               <span class="input-group-text">Instagram</span>
-              <input value="<?= $data["cv_instagram"] ?>" type="text" id="instagram" class="form-control" name="instagram">
+              <input type="text" id="instagram" class="form-control" name="instagram">
             </div>
 
             <!-- Botón de envío del formulario -->
@@ -176,5 +178,82 @@ if (($_SESSION["user"]["user_role"]) && ($_SESSION["user"]["user_role"] == 1 || 
       </div>
     </div>
   </div>
+  <?php else : ?>
+  <div class="card shadow-lg">
+    <div class="card-header bg-secondary text-white">
+      Mi CV
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card p-4">
+          <!-- si hay un error mandar un danger -->
+          <?php if ($error): ?> 
+            <p class="text-danger">
+              <?= $error ?>
+            </p>
+          <?php endif ?>
+          <form action="cvAdd.php?id=<?= $id ?>" method="post">
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Presentación Corta</span>
+              <textarea type="text" id="presentation" class="form-control custom-textarea" placeholder="Soy juan :D tengo 20 años :D" name="presentation"><?= $dataCv["cv_presentation"] ?></textarea>
+            </div>
+
+            <div class="input-group mb-3 ">
+              <span class="input-group-text span_cv px-5">Biografía</span>
+              <textarea type="text" id="about" class="form-control custom-textarea" placeholder="Biografía" name="about"><?= $dataCv["cv_about"] ?></textarea>
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Sobre mi Profesión</span>
+              <textarea type="text" id="profesionAbout" class="form-control custom-textarea" placeholder="Me dedico a..." name="profesionAbout"><?= $dataCv["cv_profesionAbout"] ?></textarea>
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Sobre tu Portafolio</span>
+              <textarea type="text" id="portfolio" class="form-control custom-textarea" placeholder="Me dedico a..." name="portfolio"><?= $dataCv["cv_portfolio"] ?></textarea>
+            </div>
+
+            <h3 class="" align="center">TUS REDES SOCIALES :D</h3>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Twitter</span>
+              <input value="<?= $dataCv["cv_twitter"] ?>" type="text" id="twitter" class="form-control" name="twitter">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Facebook</span>
+              <input value="<?= $dataCv["cv_facebook"] ?>" type="text" id="facebook" class="form-control" name="facebook">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Youtube</span>
+              <input value="<?= $dataCv["cv_youtube"] ?>" type="text" id="youtube" class="form-control" name="youtube">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Github</span>
+              <input value="<?= $dataCv["cv_github"] ?>" type="text" id="github" class="form-control" name="github">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Linkedin</span>
+              <input value="<?= $dataCv["cv_linkedin"] ?>" type="text" id="linkedin" class="form-control" name="linkedin">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">Instagram</span>
+              <input value="<?= $dataCv["cv_instagram"] ?>" type="text" id="instagram" class="form-control" name="instagram">
+            </div>
+
+            <!-- Botón de envío del formulario -->
+            <button type="submit" class="btn btn-block btn-secondary">Guardar</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php endif ?>
 </div>
 <?php require ("partials/footer.php"); ?>
